@@ -9,6 +9,7 @@ function getTypes() {
 
 var types = getTypes('javascript', false, ['window'], window, true, 1992, document, window, typeof null, null, /testReg/);
 
-var equal = types === ['string', 'boolean', 'array', 'object', 'boolean', 'number', 'object', 'object', 'string', 'object', 'regexp'];
+var equal = JSON.stringify(types) ===
+    JSON.stringify(['string', 'boolean', 'array', 'object', 'boolean', 'number', 'object', 'object', 'string', 'object', 'regexp']);
 
 alert('equal : ' + equal);
