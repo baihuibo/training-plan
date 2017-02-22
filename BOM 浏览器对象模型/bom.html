@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script>
+        if (document.documentMode) {// 如果是ie8，那么我们需要设置浏览器解析模型为最新版本
+            document.write('<meta http-equiv="X-UA-Compatible" content="ie=edge">');
+            document.write('<script src="xxx"><\/script>');
+        }
+    </script>
+</head>
+<body>
+
+<form name="us">
+    <input type="text" value="baihuibo" name="username">
+    <input type="text" value="baihuibo" name="password">
+    <input type="text" value="baihuibo" name="password">
+    <input type="text" value="baihuibo" name="password">
+    <input type="text" value="baihuibo" name="password">
+    <input type="text" value="baihuibo" name="age">
+    <input type="file" name="file" id="file">
+</form>
+
+<a href="#xxxxx" name="锚点">锚点</a>
+<a href="javascript:">链接</a>
+<a href="http://www.baidu.com">baidu</a>
+
+<img src="" alt="" usemap="#mapa">
+
+<map id="mapa">
+    <area href="bom.html">
+</map>
+
+<script>
+    document.write('<h1>Hello write!!</h1>');
+    document.writeln('<h1>Hello write!!</h1>');
+</script>
+
+
+<script src="bom.js"></script>
+
+</body>
+</html>
