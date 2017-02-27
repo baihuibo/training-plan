@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>canvas</title>
+</head>
+<body>
+
+<video id="video" autoplay loop width="300" height="200">
+    <source src="movie.mp4">
+</video>
+
+<canvas width="300" height="200" id="main"></canvas>
+
+<script>
+    const main = document.querySelector('#main');
+    const ctx = main.getContext('2d');
+
+    const video = document.querySelector('#video');
+
+    function draw() {
+        ctx.drawImage(video, 0, 0, 300, 200);
+
+        requestAnimationFrame(draw);
+    }
+    requestAnimationFrame(draw);
+
+</script>
+
+
+</body>
+</html>

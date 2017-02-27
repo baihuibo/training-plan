@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>canvas</title>
+</head>
+<body>
+
+<canvas id="main" width="300" height="200"></canvas>
+<input type="file" id="file">
+<img src="" alt="" id="imagePreview">
+
+<script>
+    const main = document.querySelector('#main');
+    const imagePreview = document.querySelector('#imagePreview');
+    const ctx = main.getContext('2d');
+
+    const fileInput = document.querySelector('#file');
+    fileInput.addEventListener('change', function () {
+        const file = fileInput.files[0];
+        const fr = new FileReader();
+
+        fr.readAsDataURL(file);
+
+        fr.onload = function () {
+            imagePreview.src = fr.result;
+            ctx.drawImage(imagePreview, 0, 0, 300, 200);
+
+            const base64 = main.toDataURL('image/jpeg', 1);
+            console.log(base64);
+        };
+    });
+
+</script>
+
+<figure>
+    <img src="">
+    <figcaption>图片的 <mark>标题</mark> </figcaption>
+    <p>asdfasdfas</p>
+</figure>
+
+<input type="text" list="data">
+<datalist id="data">
+    <option value="1">
+    <option value="2">
+    <option value="3">
+    <option value="4">
+</datalist>
+
+<input type="range" max="100" min="0" value="20">
+
+<progress value="12" max="100" min="0"></progress>
+
+
+</body>
+</html>
