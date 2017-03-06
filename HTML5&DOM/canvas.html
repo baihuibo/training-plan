@@ -31,11 +31,54 @@
         };
     });
 
+    var ajax = new XMLHttpRequest();
+
+    ajax.open('post', 'localhost/path/to/user.action', true);
+
+    var f = new FormData;
+
+    f.append('id', 1);
+    f.append('file', file);
+
+    ajax.send(f);
+
+    ajax.onreadystatechange = function () {
+        if (ajax.status == 200) {
+            ajax.responseText // 后台的反馈
+        }
+    };
+
+    ajax.upload.onprogress = function (e) {
+        if (e.lengthComputable) {
+            e.total / e.uploaded
+        }
+    };
+
+
+    /* var ws = new WebSocket('ws://192.12.xxx');
+     ws.onmessage = function (e) {
+     e.message //
+     };
+     ws.send('还好，给我发个红包');
+
+
+     //
+
+     appSocketServer(function (socketClient) {
+     socketClient.onmessage = function (e) {
+     e.message // 给我一个红包
+     if(e.message === '红包'){
+     socketClient.send('');
+     }
+     };
+     });*/
 </script>
 
 <figure>
     <img src="">
-    <figcaption>图片的 <mark>标题</mark> </figcaption>
+    <figcaption>图片的
+        <mark>标题</mark>
+    </figcaption>
     <p>asdfasdfas</p>
 </figure>
 

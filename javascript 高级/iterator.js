@@ -110,14 +110,14 @@ obj2[fn] = function () {
     console.log('obj2.fn');
 };
 
-
-var arr = [1, 2, 3];
-
-// iterator
-
-for (let val of arr) {
-    console.log(val);
-}
+//
+// var arr = [1, 2, 3];
+//
+// // iterator
+//
+// for (let val of arr) {
+//     console.log(val);
+// }
 
 /**
  * Symbol.iterator 代送器规范
@@ -142,16 +142,21 @@ var obj = {
 
     key,
 
-    [fn]: xxx,
+    // [fn]: xxx,
 
     [Symbol.iterator](){
-        let keys = Object.keys(obj);
+        let self = this;
+        let keys = Object.keys(self);
         let current = 0;
         return {
             next(){
                 if (current != keys.length) {
-                    return {value: keys[current++], done: false}
+                    let key = keys[current++];
+                    return {value: {key, value: self[key]}, done: false}
                 } else {
+                    // clean 缓存的变量
+                    keys = null;
+                    current = null;
                     return {done: true};
                 }
             }
@@ -163,44 +168,94 @@ var obj = {
 //     console.log(val);
 // }
 
-console.log(obj.name);
-console.log(obj['name']);
-
-let key = 'name';
-
-console.log(obj[key]);
-
-obj.name = 'xxx';
-obj['name'] = 'xxx';
-obj[key] = 'xxx';
+// for in  ; for; for of; // 只可以循环 支持 `iterator` 对象
 
 
-var name = 'baihuibo'
-var obj = {
-    name,
-    fn(){
+var arr = ['a', 'b', 'c'];
 
+arr.name = 1;
+arr.age = 1;
+
+if (arr[Symbol.iterator]) {
+    for (let item of arr) {
+        // console.log('item', item);// 取出每一个元素，无法使用 索引
+        // break; continue;
+        // 数组原生的只会 `iterator` 规范，所以可以使用for of
     }
-};
+
+    for (let i in arr) {// 不安全的数组操作
+        // console.log('i', i, arr[i])
+    }
+}
+
+for (let {key, value} of obj) {
+    // console.log('object of out', key, value);
+}
+
+function * gid() {
+    for (; true;) {
+        yield Math.random().toString(16).slice(2);
+    }
+}
+
+var g = gid();
+console.log(g.next());
+
+
+
+/*function * gfn() {
+ yield 1;
+ yield 2;
+ yield 3;
+ yield 4;
+ yield 5;
+ }
+
+ for (let item of gfn()) {
+ console.log('gfn item', item);
+ }
+
+ console.log('it', typeof iterator);*/
+
+
+// console.log(obj.name);
+// console.log(obj['name']);
+//
+// let key = 'name';
+//
+// console.log(obj[key]);
+//
+// obj.name = 'xxx';
+// obj['name'] = 'xxx';
+// obj[key] = 'xxx';
+//
+//
+// var name = 'baihuibo'
+// var obj = {
+//     name,
+//     fn(){
+//
+//     }
+// };
 
 /**
  * 对象解构
  */
 
-var name = obj.name;
-var fn = obj.fn;
-
-var {fn, name} = obj;
-
-var {x, y} = {x: 1, y: 2};
-var [x, y] = [1, 3, 5, 6, 7, 2];
-
-
-function fn({name, age}, [x, y, z]) {
-    console.log(name, age);
-}
-
-fn({
-    name: 1,
-    age: 2
-}, [1, 2, 3]);
+// var name = obj.name;
+// var fn = obj.fn;
+//
+// var {fn, name} = obj;
+//
+// var {x, y} = {x: 1, y: 2};
+// var [x, y] = [1, 3, 5, 6, 7, 2];
+//
+//
+// function fn({name, age}, [x, y, z]) {
+//     console.log(name, age);
+// }
+//
+// fn({
+//     name: 1,
+//     age: 2
+// }, [1, 2, 3]);

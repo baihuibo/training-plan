@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .a {
+            color: red;
+        }
+
+        .b {
+            font-size: 2em;
+        }
+
+        .c {
+            border: 1px solid yellow;
+        }
+
+        .box:before {
+            content: attr(href);
+            display: block;
+        }
+    </style>
+</head>
+<body
+        id="1"
+        class="a"
+        data-wang="1"
+        data-bai='{"id":1}'
+        data-xx="123">
+
+<pre>
+    元素的属性分俩种： 一种为标签属性，一种元素属性
+
+    标签属性指的是：在标签上显示的属性
+    元素属性：元素对象属性
+
+    标签属性，只可以通过：getAttribute 方法来访问
+    元素属性，只可以通过属性访问操作符访问(. 或者 [name])
+
+
+    元素本身的属性有 (id , title , alt, name , for , type, className as class)
+
+    在操作属性时，如果确定操作的属性类型，就直接使用对应的操作方法(属性访问操作或者 setAttribute)
+
+</pre>
+
+<input type="checkbox" id="ck">
+
+<a href="http://www.baidu.com" class="box"></a>
+<a href="http://www.baidu.com" class="box"></a>
+<a href="http://www.baidu.com" class="box"></a>
+<a href="http://www.baidu.com" class="box"></a>
+
+
+<script src="../node_modules/jquery/dist/jquery.min.js"></script>
+
+<script>
+    const body = document.body;
+    const ck = document.querySelector('#ck');
+
+    // 访问标签属性
+    //    body.getAttribute('wang')
+    //    body.getAttribute('class')
+
+    // 设置标签属性
+    //  body.setAttribute('class' , 'xxx')
+
+
+    // $().attr() => get/set Attribute
+    // $().prop() => get/set property
+
+    // console.log(body);
+</script>
+</body>
+</html>

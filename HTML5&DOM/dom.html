@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body class="" title="">
+<!-- asfas -->
+<pre>
+    最基础的对象 node 表示最子一级的节点类型
+    ELEMENT_NODE(element_node) = 1
+    ATTRIBUTE_NODE(attribute_node) = 2
+    TEXT_NODE(text_node) = 3
+    CDATA_SECTION_NODE(cdata_section_node) = 4
+
+    ENTITY_REFERENCE_NODE(entity_reference_node) = 5
+    ENTITY_NODE(entity_node) = 6
+
+    PROCESSING_INSTRUCTION_NODE(processing_instruction_node) = 7
+
+    COMMENT_NODE(comment_node) = 8
+    DOCUMENT_NODE(document_node) = 9
+    DOCUMENT_TYPE_NODE(document_type_node) = 10
+    DOCUMENT_FRAGMENT_NODE(document_fragment_node) = 11
+
+    NOTATION_NODE(notation_node) = 12
+
+    ELEMENT(element) 元素表示一个任意基本标签，
+    它也属于节点类型，它的nodeType类型总是 1
+    它包含了所有基本元素所属的基本事件
+
+    子类型包括很多 (htmlInputElement, htmlElement ....)
+
+</pre>
+
+<hr>
+<pre>
+    事件的冒泡
+    正冒泡(从下往上) 默认值， 第三个参数为false时
+    反冒泡(从上往下) 可选值，需要第三个参数为true
+
+
+</pre>
+
+<a href="http://www.baidu.com"
+   target="_blank">baidu</a>
+
+<input type="text">
+
+<script>
+    /*var body = document.body;
+     var pre = document.querySelector('pre');
+     // onclick ,on...
+
+     pre.addEventListener('click', function (e) {
+     console.log('pre 1');
+     }, true);
+     pre.addEventListener('click', function (e) {
+     console.log('pre 2');
+     }, true);
+     pre.addEventListener('click', function (e) {
+     console.log('pre 3');
+
+     e.stopImmediatePropagation();// 停止执行同级事件
+
+     }, true);
+     pre.addEventListener('click', function (e) {
+     console.log('pre 4');
+     }, true);
+
+     function clickFn(e) {
+     console.log('pre 5');
+     }
+
+     pre.addEventListener('click', clickFn);
+
+     pre.removeEventListener('click', clickFn);// 销毁事件
+
+     document.addEventListener('click', function (e) {
+     e.stopPropagation(); // 停止传播
+     e.preventDefault(); // 阻止默认行为的触发(只可以阻止浏览器的默认行为)
+     }, false);
+
+     body.addEventListener('click', function (event) {
+     console.log('body');
+     // console.log(event.target);
+     }, true);*/
+
+</script>
+
+<pre class="log" style="max-height: 200px;overflow: auto"></pre>
+<div class="box" style="width: 200px;height: 200px;background-color: black;"></div>
+
+<script>
+    const box = document.querySelector('.box');
+    const log = document.querySelector('.log');
+
+    var events = 'click,dblclick,mouseover,mouseout,mousedown,mouseup'.split(',');
+
+    // 鼠标事件，对所有的元素通用
+
+    // 表单事件: input focus blur keyup keydown change keypress
+
+    // 可以直接触发一些事件，但是并不是所有的事件都可以通过元素直接触发(click,focus,blur)
+
+    events.forEach(name => {
+        box.addEventListener(name, function (e) {
+            log.innerText = `触发 [${name}] - ${Date.now()} \n ${log.innerText}`;
+        });
+    });
+
+
+
+
+</script>
+
+
+</body>
+</html>
